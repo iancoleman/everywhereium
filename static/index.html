@@ -1,6 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Everywhereium</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    </head>
     <body>
-        <h1>Everywhereium</h1>
+        <div class="container">
+
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <span class="brand">Everywhereium</span>
+                    <form action="search" method="GET" class="navbar-form pull-right form-inline">
+                        <label for="q" class="checkbox">Does your site have unclaimed tips?</label>
+                        <div class="input-append">
+                            <input type="text" name="q" id="q" placeholder="bacon.com">
+                            <input type="submit" value="Search" class="btn">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <h1 class="text-center">Give a tip to any website on the internet</h1>
+            </div>
+            <div class="row">
+                <h1 class="text-center">How It Works</h1>
+                <div>You decide something on a site is awesome enough to deserve a tip.</div>
+                <div>Click the everywhereium <a href="#start">extension</a> button in your browser.</div>
+                <div>Decide how much you want to tip.</div>
+                <div>Press the tip button and the tip goes directly to the person.</div>
+            </div>
+            <div class="row" id="start">
+                <h1 class="text-center">Start Tipping</h1>
+            </div>
+            <div class="row">
+                <h1 class="text-center">Top Unclaimed Tips</h1>
+            </div>
+            <div class="row" id="faq">
+                <h1 class="text-center">FAQ</div>
+            </div>
+        </div>
     </body>
 </html>

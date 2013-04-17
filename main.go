@@ -59,7 +59,12 @@ func cacheStaticFile(filename string, f os.FileInfo, err error) error {
 }
 
 func main() {
-    loadCache()
+    env := os.Getenv("ENV")
+    if env == "development" {
+        http.Handle("/", http.FileServer(http.Dir("static")))
+    } else {
+        loadCache()
+    }
 
     fmt.Println("Server started")
     http.ListenAndServe(":8000", nil)

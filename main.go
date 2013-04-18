@@ -29,8 +29,8 @@ func main() {
     cache.Start()
 
     http.HandleFunc("/getAddress", getAddress)
-    http.HandlerFunc("/rescan", rescan)
-    http.HandlerFunc("/search", search)
+    http.HandleFunc("/rescan", rescan)
+    http.HandleFunc("/search", search)
 
     fmt.Println("Server started")
     http.ListenAndServe(":8000", nil)

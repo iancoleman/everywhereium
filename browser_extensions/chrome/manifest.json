@@ -21,6 +21,8 @@
     "content_scripts": [ {
         "js": [
             "javascript/jquery.min.js",
+            "javascript/scraper.js",
+            "javascript/highlighter.js",
             "javascript/content.js"
         ],
         "matches": [ "http://*/*", "https://*/*" ]

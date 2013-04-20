@@ -70,7 +70,7 @@ function renderPaypalButton(destination) {
 }
 
 function renderPendingButton(destination) {
-    return "<a id='" + destination.id + "' href='#'><img src='../images/pending.gif'></a>";
+    return "<div id='" + destination.id + "'><img src='../images/pending.gif'></a>";
 }
 
 var buttonRenderers = {

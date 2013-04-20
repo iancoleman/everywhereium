@@ -9,6 +9,8 @@ function loadOptions() {
     if (paypalclient) {
         $("#" + paypalclient).prop("checked", true);
     }
+    $("input[type=text], input[type=email]").keyup(setSaveButton);
+    $("input[type=radio]").change(setSaveButton);
 }
 
 function saveOptions() {
@@ -16,7 +18,10 @@ function saveOptions() {
     saveOption("paypalemail", $("#paypalemail").val());
     saveOption("paypalclient", $("input[name=paypalclient]:checked").val());
     $("#save").text("Saved!")
-    setTimeout(function() { $("#save").text("Save") }, 1000);
+}
+
+function setSaveButton() {
+    $("#save").text("Save");
 }
 
 function saveOption(key, val) {

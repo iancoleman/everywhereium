@@ -22,7 +22,7 @@ function listenForPopupClosed(tabId) {
 }
 
 function createPopupContent(tip) {
-    return $("<div>" + tip.id.replace(/\s/g,"&nbsp;") + "</div>");
+    return $("<div>" + tip.for.replace(/\s/g,"&nbsp;") + "</div>");
 }
 
 $(function() {

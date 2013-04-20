@@ -24,7 +24,7 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
 
 function highlightRecipients() {
     for (var i=0; i<$els.length; i++) {
-        createRecipientEl($els[i], tips[i].id);
+        createRecipientEl($els[i], tips[i].for);
     }
 }
 

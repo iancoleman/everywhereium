@@ -21,9 +21,9 @@
     "content_scripts": [ {
         "js": [
             "javascript/jquery.min.js",
-            "javascript/scraper.js",
-            "javascript/highlighter.js",
-            "javascript/content.js"
+            "javascript/tab_scraper.js",
+            "javascript/tab_highlighter.js",
+            "javascript/tab_com.js"
         ],
         "matches": [ "http://*/*", "https://*/*" ]
     } ],

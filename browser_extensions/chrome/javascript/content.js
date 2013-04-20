@@ -34,7 +34,10 @@ function getRemoteTip() {
     tips.push({
         for: "This website",
         destinations: [
-            {"bitcoin": "1address"}
+            {
+                "type": "bitcoin",
+                 "address": "1address"
+            }
         ]
     });
 }

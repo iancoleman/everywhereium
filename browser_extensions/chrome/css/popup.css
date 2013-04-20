@@ -13,3 +13,19 @@ th {
 tr:nth-child(2n+3) {
     background: #F0F0F3;
 }
+
+.btn {
+    border-radius: 3px;
+    padding: 3px;
+    text-decoration: none;
+}
+
+.bitcoin {
+    background-color: #F7931A;
+    color: white;
+}
+
+.paypal {
+    background-color: #00457C;
+    color: white;
+}

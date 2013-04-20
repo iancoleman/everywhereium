@@ -33,16 +33,22 @@ $(function() {
 function renderTable(tips) {
     // Chrome extensions don't allow eval which underscore templating engine
     // requires. boourns.
+    var cols = 0;
+    for (var i=0; i<tips.length; i++) {
+        if (tips[i].destinations.length > cols) {
+            cols = tips[i].destinations.length;
+        }
+    }
     var table = "" +
     "<table class='table-striped'>" +
-    "<tr><th>Recipient</th><th colspan='99'>Tip using</th></tr>";
+    "<tr><th>Recipient</th><th colspan='" + cols + "'>Tip&nbsp;with</th></tr>";
     for (var i=0; i<tips.length; i++) {
         var tip = tips[i];
         table += "<tr>" +
             "<td>" +
                 tip.for.replace(/\s/g,"&nbsp;") +
             "</td>" +
-            renderDestinationButtons(tip) +
+            renderDestinationButtons(tip, cols) +
         "</tr>";
     }
     table += "</table>";
@@ -50,11 +56,11 @@ function renderTable(tips) {
 }
 
 function renderBitcoinButton(destination) {
-    return "BITCOIN";
+    return "<a href='#' target='_blank' class='btn bitcoin'>Bitcoin</a>";
 }
 
 function renderPaypalButton(destination) {
-    return "PAYPAL";
+    return "<a href='#' target='_blank' class='btn paypal'>Paypal</a>";
 }
 
 var buttonRenderers = {
@@ -62,7 +68,7 @@ var buttonRenderers = {
     "paypal": renderPaypalButton
 }
 
-function renderDestinationButtons(tip) {
+function renderDestinationButtons(tip, cols) {
     var buttonCells = "";
     var destinations = tip.destinations;
     for (var j=0; j<destinations.length; j++) {
@@ -73,6 +79,9 @@ function renderDestinationButtons(tip) {
                 buttonRenderers[destination.type](destination) +
             "</td>";
         }
+    }
+    for (var i=destinations.length; i<cols; i++) {
+        buttonCells += "<td></td>";
     }
     return buttonCells;
 }

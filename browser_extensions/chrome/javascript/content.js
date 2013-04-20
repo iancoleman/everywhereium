@@ -13,6 +13,7 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
 
 function getTips() {
     tips = [];
+    $els = [];
     $("[tip]").each(function(i) {
         try {
             var $el = $(this);

@@ -3,14 +3,15 @@ var settings = {}
 function loadSettings() {
     settings = {
         bitcoinclient: localStorage["bitcoinclient"],
-        paypalemail: localStorage["paypalemail"]
+        paypalemail: localStorage["paypalemail"],
+        paypalclient: localStorage["paypalclient"]
     }
     if (!(settings.bitcoinclient)) {
         localStorage["bitcoinclient"] = "bitcoinqr";
         settings.bitcoinclient = "bitcoinqr";
     }
     if (!(settings.paypalclient)) {
-        localStorage["paypalqr"] = "paypalqr";
+        localStorage["paypalclient"] = "paypalqr";
         settings.paypalclient = "paypalqr";
     }
 }

@@ -38,7 +38,6 @@ var Popup = function() {
     }
 
     var renderBitcoinButton = function(destination) {
-        console.log(settings.bitcoinclient);
         switch (settings.bitcoinclient) {
             case "bitcoinqr":
                 return renderBitcoinQr(destination);
@@ -63,6 +62,20 @@ var Popup = function() {
     }
 
     var renderPaypalButton = function(destination) {
+        switch (settings.paypalclient) {
+            case "paypalqr":
+                return renderPaypalQr(destination);
+            case "paypalweb":
+                return renderPaypalWeb(destination);
+        }
+    }
+
+    var renderPaypalWeb = function(destination) {
+        var url = "https://paypal.com/xclick/business=" + htmlescape(destination.address);
+        return "<a href='" + url + "' target='_blank' class='btn paypal'>Paypal</a>";
+    }
+
+    var renderPaypalQr = function(destination) {
         return "<a href='#' target='_blank' class='btn paypal'>Paypal</a>";
     }
 

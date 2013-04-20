@@ -7,36 +7,47 @@
         <h1>Everywhereium Options</h1>
 
         <h2>Bitcoin</h2>
-            Bitcoin Client:
+            <h3>Bitcoin Client:</h3>
             <div>
                 <input type='radio' name='bitcoinclient' value='bitcoinqr' id='bitcoinqr' checked>
-                <label for='bitcoinqr'>QR Code</label>
+                <label for='bitcoinqr'>Mobile / manual (show a QR code and address as text)</label>
             </div>
             <div>
                 <input type='radio' name='bitcoinclient' value='bitcoinurl' id='bitcoinurl'>
-                <label for='bitcoinurl'>Bitcoin URL</label>
+                <label for='bitcoinurl'>Desktop client (via bitcoin URI)</label>
             </div>
             <div>
                 <input type='radio' name='bitcoinclient' value='blockchaininfo' id='blockchaininfo' disabled>
-                <label for='blockchaininfo'>blockchain.info</label>
+                <label for='blockchaininfo'>Open blockchain.info in a new tab</label>
                 <span>ie <a href='https://blockchain.info/wallet' target='_blank'>this site</a></span> feature coming soon
             </div>
             <div>
                 <input type='radio' name='bitcoinclient' value='coinbase' id='coinbase' disabled>
-                <label for='coinbase'>coinbase.com</label>
+                <label for='coinbase'>Open coinbase.com in a new tab</label>
                 <span>ie <a href='https://coinbase.com' target='_blank'>this site</a></span> feature coming soon
             </div>
             <div>
                 <input type='radio' name='bitcoinclient' value='walletbit' id='walletbit' disabled>
-                <label for='walletbit'>walletbit.com</label>
+                <label for='walletbit'>Open walletbit.com in a new tab</label>
                 <span>ie <a href='https://walletbit.com/bitcoin' target='_blank'>this site</a></span> feature coming soon
             </div>
 
         <h2>Paypal</h2>
-        <div>
-            <label for='paypalemail'>Paypal login email: </label>
-            <input id='paypalemail' type='email'>
-        </div>
+            <h3>Your Paypal email:</h3>
+            <div>
+                <label for='paypalemail'>Paypal login email: </label>
+                <input id='paypalemail' type='email'>
+            </div>
+            <h3>Paypal Client:</h3>
+            <div>
+                <label for='paypalqr'>Mobile / manual (show a QR code and address as text)</label>
+                <input type='radio' name='paypalclient' value='paypalqr' id='paypalqr'>
+            </div>
+            <div>
+                <label for='paypalweb'>Open paypal.com in a new tab</label>
+                <input type='radio' name='paypalclient' value='paypalweb' id='paypalweb'>
+            </div>
+
 
         <button id='save'>Save</button>
 

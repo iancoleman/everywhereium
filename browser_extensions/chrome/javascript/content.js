@@ -83,6 +83,7 @@ function createRecipientEl(el, recipient) {
         position: "absolute",
         width: el.width() - borderThickness,
         height: el.height() - borderThickness,
+        margin: el.css("margin"),
         top: position.top,
         left: position.left,
         border: borderWidth + "px solid red",

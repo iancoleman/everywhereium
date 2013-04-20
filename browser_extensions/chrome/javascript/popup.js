@@ -1,3 +1,8 @@
+var settings = {
+    bitcoinclient: localStorage["bitcoinclient"] || "bitcoinqr",
+    paypalemail: localStorage["paypalemail"]
+}
+
  function init(tabId) {
     listenForPopupClosed(tabId);
     listenForPendingAddresses();

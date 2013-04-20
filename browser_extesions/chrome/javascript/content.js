@@ -1,5 +1,16 @@
+var tips = [];
+var $els = [];
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
-    var tippingPoints = $("div[tip]").attr("tip");
-    sendResponse({msg: tippingPoints});
+    tips = [];
+    $("div[tip]").each(function(i) {
+        try {
+            var $el = $(this);
+            var tipStr = $el.attr("tip");
+            var tip = JSON.parse(tipStr);
+            tips.push(tip);
+            $els.push($el);
+        }
+        catch (e) {}
+    });
+    sendResponse({data: tips});
 })
-

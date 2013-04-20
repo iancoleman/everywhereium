@@ -1,5 +1,6 @@
-function init(tabId) {
-    chrome.tabs.sendMessage(tabId, {}, function(response) {
+
+ function init(tabId) {
+    chrome.tabs.sendMessage(tabId, {show: true}, function(response) {
         var tips = response.data;
         for (var i=0; i<tips.length; i++) {
             var tip = tips[i];
@@ -17,9 +18,11 @@ function createPopupContent(tip) {
 }
 
 $(function() {
+    chrome.extension.getBackgroundPage().popupOpened();
     chrome.tabs.query({active: true, currentWindow: true}, function(tab) {
         var tabId = tab[0].id;
         init(tabId);
         $("body").show();
     });
 })
+

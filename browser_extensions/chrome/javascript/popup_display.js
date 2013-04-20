@@ -38,6 +38,22 @@ var Popup = function() {
     }
 
     var renderBitcoinButton = function(destination) {
+        console.log(settings.bitcoinclient);
+        switch (settings.bitcoinclient) {
+            case "bitcoinqr":
+                return renderBitcoinQr(destination);
+            case "bitcoinuri":
+                return showBitcoinUri(destination);
+        }
+    }
+
+    var renderBitcoinUri = function(destination) {
+        var uri = "bitcoin:" + htmlescape(destination.address);
+        return "<a href='" + uri + "' target='_blank' class='btn bitcoin'>Bitcoin</a>";
+    }
+
+    var renderBitcoinQr = function(destination) {
+        // This needs to display the qr, not the bitcoin uri
         var uri = "bitcoin:" + htmlescape(destination.address);
         return "<a href='" + uri + "' target='_blank' class='btn bitcoin'>Bitcoin</a>";
     }

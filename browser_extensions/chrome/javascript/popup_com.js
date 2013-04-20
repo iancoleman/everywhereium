@@ -11,7 +11,7 @@ function loadSettings() {
     }
     if (!(settings.paypalclient)) {
         localStorage["paypalqr"] = "paypalqr";
-        settings.bitcoinclient = "paypalqr";
+        settings.paypalclient = "paypalqr";
     }
 }
 

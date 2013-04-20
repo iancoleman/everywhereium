@@ -1,15 +1,26 @@
-var settings = {
-    bitcoinclient: localStorage["bitcoinclient"] || "bitcoinqr",
-    paypalemail: localStorage["paypalemail"]
+var settings = {}
+
+function loadSettings() {
+    settings = {
+        bitcoinclient: localStorage["bitcoinclient"],
+        paypalemail: localStorage["paypalemail"]
+    }
+    if (!(settings.bitcoinclient)) {
+        localStorage["bitcoinclient"] = "bitcoinqr";
+        settings.bitcoinclient = "bitcoinqr";
+    }
+    if (!(settings.paypalclient)) {
+        localStorage["paypalqr"] = "paypalqr";
+        settings.bitcoinclient = "paypalqr";
+    }
 }
 
- function init(tabId) {
-    listenForPopupClosed(tabId);
-    listenForPendingAddresses();
+ function scrapeTab(tabId) {
     chrome.tabs.sendMessage(tabId, {show: true}, function(response) {
         var tips = response.data;
         var table = popup.createContent(tips);
         $("body").append(table);
+        $("body").show();
     });
 }
 
@@ -27,10 +38,12 @@ function listenForPopupClosed(tabId) {
 }
 
 $(function() {
+    loadSettings();
     chrome.tabs.query({active: true, currentWindow: true}, function(tab) {
         var tabId = tab[0].id;
-        init(tabId);
-        $("body").show();
+        listenForPopupClosed(tabId);
+        listenForPendingAddresses();
+        scrapeTab(tabId);
     });
 })
 

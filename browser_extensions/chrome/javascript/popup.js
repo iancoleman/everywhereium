@@ -52,7 +52,7 @@ function renderTable(tips) {
         var tip = tips[i];
         table += "<tr>" +
             "<td>" +
-                tip.for.replace(/\s/g,"&nbsp;") +
+                htmlescape(tip.for).replace(/\s/g,"&nbsp;") +
             "</td>" +
             renderDestinationButtons(tip, cols) +
         "</tr>";
@@ -62,7 +62,12 @@ function renderTable(tips) {
 }
 
 function renderBitcoinButton(destination) {
-    return "<a href='#' target='_blank' class='btn bitcoin'>Bitcoin</a>";
+    var uri = "bitcoin:" + htmlescape(destination.address);
+    return "<a href='" + uri + "' target='_blank' class='btn bitcoin'>Bitcoin</a>";
+}
+
+function htmlescape(text) {
+    return $(document.createElement("div")).text(text).html();
 }
 
 function renderPaypalButton(destination) {

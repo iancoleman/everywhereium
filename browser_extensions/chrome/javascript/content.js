@@ -35,11 +35,30 @@ function getRemoteTip() {
         for: "This website",
         destinations: [
             {
-                "type": "bitcoin",
-                 "address": "1address"
+                "type": "pending",
+                "id": "wholesitetip"
             }
         ]
     });
+    getRemoteAddress();
+}
+
+function getRemoteAddress() {
+    // make ajax call
+    setTimeout(sendPendingAddress, 500);
+}
+
+function sendPendingAddress(data) {
+    var params = {
+        id: "wholesitetip",
+        destination: {
+            type: "bitcoin",
+            address: "1armory"
+        }
+    }
+    chrome.extension.sendMessage(params);
+    $els.push($("body"));
+    highlightRecipients();
 }
 
 function highlightRecipients() {

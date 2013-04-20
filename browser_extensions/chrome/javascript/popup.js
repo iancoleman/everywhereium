@@ -1,10 +1,16 @@
  function init(tabId) {
     listenForPopupClosed(tabId);
+    listenForPendingAddresses();
     chrome.tabs.sendMessage(tabId, {show: true}, function(response) {
         var tips = response.data;
-
         var tipEl = createPopupContent(tips);
         $("body").append(tipEl);
+    });
+}
+
+function listenForPendingAddresses() {
+    chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
+        $("#" + request.id).html(renderBitcoinButton(request.destination));
     });
 }
 
@@ -63,9 +69,14 @@ function renderPaypalButton(destination) {
     return "<a href='#' target='_blank' class='btn paypal'>Paypal</a>";
 }
 
+function renderPendingButton(destination) {
+    return "<a id='" + destination.id + "' href='#'><img src='../images/pending.gif'></a>";
+}
+
 var buttonRenderers = {
     "bitcoin": renderBitcoinButton,
-    "paypal": renderPaypalButton
+    "paypal": renderPaypalButton,
+    "pending": renderPendingButton
 }
 
 function renderDestinationButtons(tip, cols) {

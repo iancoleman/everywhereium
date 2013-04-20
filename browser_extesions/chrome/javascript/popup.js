@@ -3,14 +3,8 @@
     listenForPopupClosed(tabId);
     chrome.tabs.sendMessage(tabId, {show: true}, function(response) {
         var tips = response.data;
-        for (var i=0; i<tips.length; i++) {
-            var tip = tips[i];
-            var tipEl = createPopupContent(tip);
-            $("body").append(tipEl);
-        }
-        if (tips.length == 0) {
-            $("body").text("No tips on this page");
-        }
+        var tipEl = createPopupContent(tips);
+        $("body").append(tipEl);
     });
 }
 
@@ -21,8 +15,11 @@ function listenForPopupClosed(tabId) {
     }, true);
 }
 
-function createPopupContent(tip) {
-    return $("<div>" + tip.for.replace(/\s/g,"&nbsp;") + "</div>");
+function createPopupContent(tips) {
+    var el = $(document.createElement("div"));
+    var table = renderTable(tips);
+    el.html(table);
+    return el;
 }
 
 $(function() {
@@ -33,3 +30,22 @@ $(function() {
     });
 })
 
+function renderTable(tips) {
+    // Chrome extensions don't allow eval which underscore templating engine
+    // requires. boourns.
+    var table = "" +
+    "<table class='table-striped'>" +
+    "<tr><th>Recipient</th><th>Tip using</th></tr>";
+    for (var i=0; i<tips.length; i++) {
+        table += "<tr>" +
+            "<td>" +
+                tips[i].for.replace(/\s/g,"&nbsp;") +
+            "</td>" +
+            "<td>" +
+                "Something" +
+            "</td>" +
+        "</tr>"
+    }
+    table += "</table>";
+    return table
+}

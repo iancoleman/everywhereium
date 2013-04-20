@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Options - Everywhereium</title>
+        <script type="text/javascript" src="../javascript/options.js"></script>
+    </head>
+    <body>
+        <h1>Everywhereium Options</h1>
+
+        <h2>Bitcoin</h2>
+            Bitcoin Client:
+            <div>
+                <input type='radio' name='bitcoin' value='bitcoinurl' id='bitcoinurl' checked>
+                <label for='bitcoinurl'>Bitcoin URL eg bitcoin://1abcd...</label>
+            </div>
+            <div>
+                <input type='radio' name='bitcoin' value='blockchaininfo' id='blockchaininfo' disabled>
+                <label for='blockchaininfo'>blockchain.info</label>
+                <span>ie <a href='https://blockchain.info/wallet' target='_blank'>this site</a></span> feature coming soon
+            </div>
+            <div>
+                <input type='radio' name='bitcoin' value='coinbase' id='coinbase' disabled>
+                <label for='coinbase'>coinbase.com</label>
+                <span>ie <a href='https://coinbase.com' target='_blank'>this site</a></span> feature coming soon
+            </div>
+            <div>
+                <input type='radio' name='bitcoin' value='walletbit' id='walletbit' disabled>
+                <label for='walletbit'>walletbit.com</label>
+                <span>ie <a href='https://walletbit.com/bitcoin' target='_blank'>this site</a></span> feature coming soon
+            </div>
+
+        <h2>Paypal</h2>
+        <div>
+            <label for='paypalemail'>Paypal login email: </label>
+            <input id='paypalemail' type='email'>
+        </div>
+
+        <button id='save'>Save</button>
+
+    </body>
+</html>
+

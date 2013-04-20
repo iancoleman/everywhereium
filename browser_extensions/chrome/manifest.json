@@ -24,6 +24,8 @@
             "javascript/content.js"
         ],
         "matches": [ "http://*/*", "https://*/*" ]
-    } ]
+    } ],
+
+    "options_page": "html/options.html"
 
 }

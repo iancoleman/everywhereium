@@ -45,3 +45,7 @@ tr:nth-child(2n+3) {
     margin-left: auto;
     margin-right: auto;
 }
+
+.escrowHelper {
+    font-size: 0.8em;
+}

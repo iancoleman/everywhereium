@@ -29,7 +29,7 @@ function Scraper() {
             destinations: [
                 {
                     "type": "pending",
-                    "id": "wholesitetip"
+                    "id": "everywhereium"
                 }
             ]
         });
@@ -39,10 +39,11 @@ function Scraper() {
     var getRemoteAddress = function() {
         // make ajax call
         var data = {
-            id: "wholesitetip",
+            id: "everywhereium",
             destination: {
                 type: "bitcoin",
-                address: "1armory"
+                address: "1armory",
+                escrow: true
             }
         }
         setTimeout(function() {

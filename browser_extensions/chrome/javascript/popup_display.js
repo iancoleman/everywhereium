@@ -14,6 +14,9 @@ var Popup = function() {
 
     this.showPendingDestination = function(elId, destination) {
         $("#" + elId).html(renderBitcoinButton(destination));
+        if(destination.escrow) {
+            showEscrowHelperMsg();
+        }
     }
 
     var renderTable = function(tips) {
@@ -131,6 +134,15 @@ var Popup = function() {
             buttonCells.push($("<td></td>"));
         }
         return buttonCells;
+    }
+
+    var showEscrowHelperMsg = function() {
+        var div = $(document.createElement("div"));
+        div.addClass("escrowHelper");
+        div.append($("<div>This tip will be held at everywhereium until the owner of the site claims it.</div>"));
+        var url = "#?" + (new Date().getTime());
+        div.append("<a href='" + url + "' target='_blank'>Please tell them about their tip!</a>");
+        $("body").append(div);
     }
 
 }

@@ -62,6 +62,7 @@ class Armory_Daemon():
         reactor.listenTCP(RPC_PORT, server.Site(secured_resource))
 
         sys.stdout.write("\nServer started")
+        sys.stdout.flush()
         self.start()
 
     def set_auth(self, resource):

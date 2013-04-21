@@ -1,11 +1,10 @@
 package bitcoin
 
 import (
-    "fmt"
     "jsonrpc"
 )
 
-func GetNewAddress() {
+func GetNewAddress() string {
     response := jsonrpc.Call("getnewaddress", nil)
-    fmt.Println(response)
+    return response["result"].(string)
 }

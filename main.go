@@ -1,6 +1,7 @@
 package main
 
 import (
+    "bitcoin"
     "cache"
     "fmt"
     "net/http"
@@ -8,8 +9,10 @@ import (
 
 func getAddress(w http.ResponseWriter, r *http.Request) {
     // Do some jsonrpc to armoryd
+    address := bitcoin.GetNewAddress()
     // Save the result in the database
     // Write the result to the response
+    fmt.Fprintf(w, address)
 }
 
 func rescan(w http.ResponseWriter, r *http.Request) {

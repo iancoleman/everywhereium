@@ -58,6 +58,9 @@ func rescan(w http.ResponseWriter, r *http.Request) {
         return
     }
     // Mark the received payment to be paid to the address on the site
+    query := `UPDATE everywhereium SET parse_time=(extract(epoch from now() at time zone 'utc')*1000000), parse_address=$1, has_been_claimed=FALSE WHERE id IN (SELECT id FROM everywhereium WHERE site=$2) and has_been_claimed IS NULL;`
+    db.Write(query, string(address), site)
+    fmt.Fprintf(w, string(address))
 }
 
 func search(w http.ResponseWriter, r *http.Request) {

@@ -69,7 +69,7 @@ func rescan(w http.ResponseWriter, r *http.Request) {
     if address == nil {
         w.WriteHeader(400)
         // This error text should be jsonic.
-        fmt.Fprintf(w, "Unable to find an address at the site " + site + " in the content " + string(body))
+        fmt.Fprintf(w, "Unable to find an address at the site " + site + " in the <body> tag in " + string(body))
         return
     }
     // Mark the received payment to be paid to the address on the site

@@ -8,8 +8,8 @@ var bodyFinder, tipFinder, addressFinder *regexp.Regexp
 
 func Init() {
     bodyFinder, _ = regexp.Compile(`<\s*body([^>]*)>`)
-    tipFinder, _ = regexp.Compile(`tip=(.*)`)
-    addressFinder, _ = regexp.Compile(`{.*bitcoin"\s*:\s*"([a-zA-Z0-9]+)"`)
+    tipFinder, _ = regexp.Compile(`tip\s*=\s*(.*)`)
+    addressFinder, _ = regexp.Compile(`(1[abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ123456789]{26,33})`)
 }
 
 func FindAddress(html []byte) []byte {

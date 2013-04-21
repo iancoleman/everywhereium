@@ -5,7 +5,9 @@ import (
     "cache"
     "db"
     "fmt"
+    "io/ioutil"
     "net/http"
+    "scraper"
 )
 
 func getAddress(w http.ResponseWriter, r *http.Request) {
@@ -26,10 +28,36 @@ func getAddress(w http.ResponseWriter, r *http.Request) {
 }
 
 func rescan(w http.ResponseWriter, r *http.Request) {
+    r.ParseForm()
+    if _,ok := r.Form["site"]; !ok {
+        w.WriteHeader(400)
+        fmt.Fprintf(w, "Missing site parameter. Append ?site=http://example.com to your url.")
+        return
+    }
+    site := r.Form["site"][0]
     // Read the specified website
+    response, err := http.Get(site)
+    if err != nil {
+        w.WriteHeader(400)
+        fmt.Fprintf(w, "Unable to read the site at " + site)
+        return
+    }
+    defer response.Body.Close()
+    body, err := ioutil.ReadAll(response.Body)
+    if err != nil {
+        w.WriteHeader(400)
+        fmt.Fprintf(w, "Unable to read site at " + site)
+        return
+    }
     // See if it contains the required meta tag
-    // If so mark the received payment to be paid to the address on the site
-    // If not return the content that was received with the error 'no meta tag'
+    address := scraper.FindAddress(body)
+    if address == nil {
+        w.WriteHeader(400)
+        // This error text should be jsonic.
+        fmt.Fprintf(w, "Unable to find an address at the site " + site + " in the content " + string(body))
+        return
+    }
+    // Mark the received payment to be paid to the address on the site
 }
 
 func search(w http.ResponseWriter, r *http.Request) {
@@ -38,6 +66,8 @@ func search(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+
+    scraper.Init()
 
     cache.Start()
 

@@ -10,7 +10,7 @@ import (
 
 var url string
 
-func Call(method string, params []interface{}) map[string]interface{} {
+func Call(method string, params []interface{}) []byte {
     data, err := json.Marshal(map[string]interface{}{
         "method": method,
         "params": params,
@@ -28,12 +28,7 @@ func Call(method string, params []interface{}) map[string]interface{} {
     if err != nil {
         panic(err)
     }
-    result := make(map[string]interface{})
-    err = json.Unmarshal(body, &result)
-    if err != nil {
-        panic(err)
-    }
-    return result
+    return body
 }
 
 func getUrl() string {

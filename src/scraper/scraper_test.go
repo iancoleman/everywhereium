@@ -16,16 +16,21 @@ func Test_FindAddress(t *testing.T) {
         bresult := FindAddress([]byte(content))
         result := string(bresult)
         if result != expected {
-            t.Error(string(result), expected)
+            t.Error("Expected " + expected + ", got " + string(result))
         }
     }
 }
 
+var tipVal1 = `{"for":"me","destinations":[{"type":"bitcoin","address":"1"}]}`
+var tipVal2 = `{"for":"me","destinations":[{"type":"bitcoin","address":"2"}]}`
 var empties = []string{
 `<body tip='{}'>`,
+`<body><body tip='` + tipVal1 + `'>`,
+`<body><div class='forum-post'><body tip='` + tipVal1 + `'></body>`,
+`<body garbage='something'><div class='forum-post'><body tip='` + tipVal1 + `'></body>`,
 `lalalala`}
 
 var goodies = map[string]string{
-    `a`: `<body tip='{a}'>`,
-    `b`: `<body tip='{b}'>`,
+    `1`: `<body tip='` + tipVal1 + `'></body>`,
+    `2`: `<body tip='` + tipVal2 + `'><div class='forum-post'><body tip='` + tipVal1 + `'></body>`,
 }

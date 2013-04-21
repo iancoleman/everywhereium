@@ -35,6 +35,21 @@ func rescan(w http.ResponseWriter, r *http.Request) {
         return
     }
     site := r.Form["site"][0]
+    // See if the site is in the database
+    query := `SELECT COUNT(*) FROM everywhereium WHERE site=$1`
+    rows := db.Read(query, site)
+    rowCount := 0
+    for rows.Next() {
+        err := rows.Scan(&rowCount)
+        if err != nil {
+            panic(err)
+        }
+    }
+    if rowCount == 0 {
+        w.WriteHeader(404)
+        fmt.Fprintf(w, "No tips found for site " + site)
+        return
+    }
     // Read the specified website
     response, err := http.Get(site)
     if err != nil {
@@ -58,7 +73,7 @@ func rescan(w http.ResponseWriter, r *http.Request) {
         return
     }
     // Mark the received payment to be paid to the address on the site
-    query := `UPDATE everywhereium SET parse_time=(extract(epoch from now() at time zone 'utc')*1000000), parse_address=$1, has_been_claimed=FALSE WHERE id IN (SELECT id FROM everywhereium WHERE site=$2) and has_been_claimed IS NULL;`
+    query = `UPDATE everywhereium SET parse_time=(extract(epoch from now() at time zone 'utc')*1000000), parse_address=$1, has_been_claimed=FALSE WHERE id IN (SELECT id FROM everywhereium WHERE site=$2) and has_been_claimed IS NULL;`
     db.Write(query, string(address), site)
     fmt.Fprintf(w, string(address))
 }
@@ -74,9 +89,9 @@ func main() {
 
     cache.Start()
 
-    http.HandleFunc("/getAddress", getAddress)
-    http.HandleFunc("/rescan", rescan)
-    http.HandleFunc("/search", search)
+    http.HandleFunc("/api/getAddress", getAddress)
+    http.HandleFunc("/api/rescan", rescan)
+    http.HandleFunc("/api/search", search)
 
     fmt.Println("Server started")
     http.ListenAndServe(":8000", nil)

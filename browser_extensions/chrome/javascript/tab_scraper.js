@@ -40,6 +40,9 @@ function Scraper() {
         // make ajax call
         $.ajax({
             url: "http://localhost:8000/getAddress",
+            data: {
+                site: window.location.href
+            },
             success: function(data) {
                 var data = {
                     id: "everywhereium",

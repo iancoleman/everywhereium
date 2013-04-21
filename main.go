@@ -8,6 +8,14 @@ import (
 )
 
 func getAddress(w http.ResponseWriter, r *http.Request) {
+    // Get the site being tipped
+    r.ParseForm()
+    if _,ok := r.Form["site"]; !ok {
+        w.WriteHeader(400)
+        fmt.Fprintf(w, "Missing site parameter. Append ?site=http://example.com to your url.")
+        return
+    }
+    //site := r.Form["site"][0]
     // Do some jsonrpc to armoryd
     address := bitcoin.GetNewAddress()
     // Save the result in the database

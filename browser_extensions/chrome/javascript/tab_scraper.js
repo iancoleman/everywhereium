@@ -39,7 +39,7 @@ function Scraper() {
     var getRemoteAddress = function() {
         // make ajax call
         $.ajax({
-            url: "http://localhost:8000/getAddress",
+            url: "http://localhost:8000/api/getAddress",
             data: {
                 site: window.location.href
             },

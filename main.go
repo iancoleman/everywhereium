@@ -3,6 +3,7 @@ package main
 import (
     "bitcoin"
     "cache"
+    "db"
     "fmt"
     "net/http"
 )
@@ -15,10 +16,11 @@ func getAddress(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintf(w, "Missing site parameter. Append ?site=http://example.com to your url.")
         return
     }
-    //site := r.Form["site"][0]
+    site := r.Form["site"][0]
     // Do some jsonrpc to armoryd
     address := bitcoin.GetNewAddress()
     // Save the result in the database
+    db.Write("INSERT INTO everywhereium (site, receive_address) VALUES ($1, $2)", site, address)
     // Write the result to the response
     fmt.Fprintf(w, address)
 }

@@ -13,7 +13,8 @@ var Popup = function() {
     }
 
     this.showPendingDestination = function(elId, destination) {
-        $("#" + elId).html(renderBitcoinButton(destination));
+        var button = buttonRenderers[destination.type](destination);
+        $("#" + elId).empty().append(button);
         if(destination.escrow) {
             showEscrowHelperMsg();
         }
@@ -112,10 +113,15 @@ var Popup = function() {
         return $("<div id='" + destination.id + "'><img src='../images/pending.gif'></a>");
     }
 
+    var renderErrorButton = function(destination) {
+        return $("<a class='btn error' title='There was an error getting this tip address.'>Error</a>");
+    }
+
     var buttonRenderers = {
         "bitcoin": renderBitcoinButton,
         "paypal": renderPaypalButton,
-        "pending": renderPendingButton
+        "pending": renderPendingButton,
+        "error": renderErrorButton
     }
 
     var renderDestinationButtons = function(tip, cols) {

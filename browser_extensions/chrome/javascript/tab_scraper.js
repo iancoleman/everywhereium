@@ -38,18 +38,29 @@ function Scraper() {
 
     var getRemoteAddress = function() {
         // make ajax call
-        var data = {
-            id: "everywhereium",
-            destination: {
-                type: "bitcoin",
-                address: "1armory",
-                escrow: true
+        $.ajax({
+            url: "http://localhost:8000/getAddress",
+            success: function(data) {
+                var data = {
+                    id: "everywhereium",
+                    destination: {
+                        type: "bitcoin",
+                        address: data,
+                        escrow: true
+                    }
+                }
+                _this.$els.push($("body"));
+                sendPendingAddress(data)
+            },
+            error: function() {
+                sendPendingAddress({
+                    id: "everywhereium",
+                    destination: {
+                        type: "error"
+                    }
+                })
             }
-        }
-        setTimeout(function() {
-            _this.$els.push($("body"));
-            sendPendingAddress(data)
-        }, 500);
+        });
     }
 }
 

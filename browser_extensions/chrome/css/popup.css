@@ -29,12 +29,18 @@ tr:nth-child(2n+3) {
 
 .bitcoin {
     background-color: #F7931A;
-    color: white;
+    color: #FFF;
 }
 
 .paypal {
     background-color: #00457C;
-    color: white;
+    color: #FFF;
+}
+
+.error {
+    cursor: default;
+    background-color: #FF0000;
+    color: #FFF;
 }
 
 #qrText {

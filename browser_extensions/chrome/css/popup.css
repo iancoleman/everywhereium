@@ -1,9 +1,15 @@
+body {
+    text-align: center;
+}
+
 table {
     border-collapse: collapse;
+    float: right;
 }
 
 td, th {
     padding: 5px;
+    text-align: left;
 }
 
 th {
@@ -15,6 +21,7 @@ tr:nth-child(2n+3) {
 }
 
 .btn {
+    cursor: pointer;
     border-radius: 3px;
     padding: 3px;
     text-decoration: none;
@@ -28,4 +35,13 @@ tr:nth-child(2n+3) {
 .paypal {
     background-color: #00457C;
     color: white;
+}
+
+#qrText {
+    margin: 1em;
+}
+
+#qrImg {
+    margin-left: auto;
+    margin-right: auto;
 }

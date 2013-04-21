@@ -4,7 +4,11 @@ var Popup = function() {
     this.createContent = function(tips) {
         var el = $(document.createElement("div"));
         var table = renderTable(tips);
-        el.html(table);
+        el.append(table);
+        if (settings.bitcoinclient == "bitcoinqr" || settings.paypalclient == "paypalqr") {
+            var qr = renderQrContainer();
+            el.append(qr);
+        }
         return el;
     }
 
@@ -21,20 +25,28 @@ var Popup = function() {
                 cols = tips[i].destinations.length;
             }
         }
-        var table = "" +
-        "<table class='table-striped'>" +
-        "<tr><th>Recipient</th><th colspan='" + cols + "'>Tip&nbsp;with</th></tr>";
+        var table = $("<table class='table-striped'></table>");
+        var heading = $("<tr><th>Recipient</th><th colspan='" + cols + "'>Tip&nbsp;with</th></tr>");
+        table.append(heading)
         for (var i=0; i<tips.length; i++) {
             var tip = tips[i];
-            table += "<tr>" +
-                "<td>" +
-                    htmlescape(tip.for).replace(/\s/g,"&nbsp;") +
-                "</td>" +
-                renderDestinationButtons(tip, cols) +
-            "</tr>";
+            var row = $("<tr></tr>");
+            var forCell = $("<td>" + htmlescape(tip.for).replace(/\s/g,"&nbsp;") + "</td>");
+            row.append(forCell);
+            var buttons = renderDestinationButtons(tip, cols);
+            for (var j=0; j<buttons.length; j++) {
+                row.append(buttons[j]);
+            }
+            table.append(row);
         }
-        table += "</table>";
         return table
+    }
+
+    var renderQrContainer = function() {
+        var qr = $(document.createElement("div"));
+        qr.append($("<div id='qrImg'></div>"));
+        qr.append($("<div id='qrText'></div>"));
+        return qr;
     }
 
     var renderBitcoinButton = function(destination) {
@@ -48,13 +60,19 @@ var Popup = function() {
 
     var renderBitcoinUri = function(destination) {
         var uri = "bitcoin:" + htmlescape(destination.address);
-        return "<a href='" + uri + "' target='_blank' class='btn bitcoin'>Bitcoin</a>";
+        return $("<a href='" + uri + "' target='_blank' class='btn bitcoin'>Bitcoin</a>");
     }
 
     var renderBitcoinQr = function(destination) {
-        // This needs to display the qr, not the bitcoin uri
-        var uri = "bitcoin:" + htmlescape(destination.address);
-        return "<a href='" + uri + "' target='_blank' class='btn bitcoin'>Bitcoin</a>";
+        var btn = $(document.createElement("div"));
+        btn.text("Bitcoin");
+        btn.addClass("btn bitcoin");
+        btn.click(function() {
+            $("#qrImg").empty();
+            $("#qrImg").qrcode(destination.address);
+            $("#qrText").text(destination.address);
+        });
+        return btn;
     }
 
     var htmlescape = function(text) {
@@ -72,15 +90,23 @@ var Popup = function() {
 
     var renderPaypalWeb = function(destination) {
         var url = "https://paypal.com/xclick/business=" + htmlescape(destination.address);
-        return "<a href='" + url + "' target='_blank' class='btn paypal'>Paypal</a>";
+        return $("<a href='" + url + "' target='_blank' class='btn paypal'>Paypal</a>");
     }
 
     var renderPaypalQr = function(destination) {
-        return "<a href='#' target='_blank' class='btn paypal'>Paypal</a>";
+        var btn = $(document.createElement("div"));
+        btn.text("Paypal");
+        btn.addClass("btn paypal");
+        btn.click(function() {
+            $("#qrImg").empty();
+            $("#qrImg").qrcode(destination.address);
+            $("#qrText").text(destination.address);
+        });
+        return btn;
     }
 
     var renderPendingButton = function(destination) {
-        return "<div id='" + destination.id + "'><img src='../images/pending.gif'></a>";
+        return $("<div id='" + destination.id + "'><img src='../images/pending.gif'></a>");
     }
 
     var buttonRenderers = {
@@ -90,19 +116,19 @@ var Popup = function() {
     }
 
     var renderDestinationButtons = function(tip, cols) {
-        var buttonCells = "";
+        var buttonCells = [];
         var destinations = tip.destinations;
         for (var j=0; j<destinations.length; j++) {
             var destination = destinations[j];
             if (destination.type in buttonRenderers) {
-                buttonCells += "" +
-                "<td>" +
-                    buttonRenderers[destination.type](destination) +
-                "</td>";
+                var buttonCell = $("<td></td>");
+                var button = buttonRenderers[destination.type](destination);
+                buttonCell.append(button);
+                buttonCells.push(buttonCell);
             }
         }
         for (var i=destinations.length; i<cols; i++) {
-            buttonCells += "<td></td>";
+            buttonCells.push($("<td></td>"));
         }
         return buttonCells;
     }

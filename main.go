@@ -45,5 +45,5 @@ func main() {
 }
 
 func redirectToTLS(w http.ResponseWriter, r *http.Request) {
-    http.Redirect(w, r, "https://localhost:8443" + r.URL.Path, http.StatusMovedPermanently)
+    http.Redirect(w, r, "https://" + os.Getenv("HOST") + r.URL.Path, http.StatusMovedPermanently)
 }

@@ -39,7 +39,7 @@ function Scraper() {
     var getRemoteAddress = function() {
         // make ajax call
         $.ajax({
-            url: "http://localhost:8000/api/getAddress",
+            url: "https://everywhereium.com/api/getAddress",
             data: {
                 site: window.location.href
             },

@@ -4,6 +4,11 @@
     "name": "everywhereium",
     "description": "Tip anyone on the internet.",
     "version": "0.1",
+    "icons": {
+        "16": "images/everywhereium16.png",
+        "48": "images/everywhereium48.png",
+        "128": "images/everywhereium128.png"
+    },
 
     "permissions": [
         "tabs"
@@ -14,8 +19,12 @@
     },
 
     "browser_action": {
-        "default_icon": "images/icon.png",
-        "default_popup": "html/popup.html"
+        "default_icon": {
+            "19": "images/everywhereium19.png",
+            "38": "images/everywhereium38.png"
+        },
+        "default_popup": "html/popup.html",
+        "default_title": "Everywhereium"
     },
 
     "content_scripts": [ {

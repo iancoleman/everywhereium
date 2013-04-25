@@ -37,10 +37,9 @@ func cacheStaticFile(filename string, f os.FileInfo, err error) error {
         return nil
     }
     key := strings.Replace(filename, "static/", "", 1)
-    keyTruncated := ""
     extension := key[strings.LastIndex(key, "."):]
     if extension == ".html" {
-        keyTruncated = key[:strings.LastIndex(key, extension)]
+        key = key[:strings.LastIndex(key, extension)]
     }
     fmt.Println("Caching " + filename + " as " + key)
     content, err := ioutil.ReadFile(filename)

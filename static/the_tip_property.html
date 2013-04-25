@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Everywhereium</title>
+    </head>
+    <body tip='{"for":"Ian","destinations":[{"type":"bitcoin","address":"167ymicw1TgLfpm5Nu8kpHn1z4mz1d5DFB"}]}'>
+        <div>The tip property is json, with the format</div>
+        <pre>
+{
+    "for": "Your name",
+    "destinations": [
+        {
+            "type": "bitcoin",
+            "address": "1youraddress"
+        },
+        {
+            "type": "paypal",
+            "address": "yourpaypal@example.com"
+        }
+    ]
+}
+</pre>
+        <div>
+            <ul>
+                <li>There must be at least one destination</li>
+                <li>Currently the destination types supported by the everywhereium extension include bitcoin and paypal. Other destination types will probably be added in the future.</li>
+                <li>the <code>for</code> property is used to differentiate between people to be tipped in case there are multiple tips on the page.</li>
+            </ul>
+        </div>
+        <div>Enter your details below to generate a tip property value that can be copied and pasted</div>
+
+        <div>
+            <label for="for">For</label>
+            <input id="for">
+        </div>
+        <div>
+            <label for="bitcoin">Bitcoin Address</label>
+            <input id="bitcoin">
+        </div>
+        <div>
+            <label for="paypal">Paypal Email</label>
+            <input id="paypal">
+        </div>
+
+        <textarea id="result" cols=100></textarea>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <script type="text/javascript">
+            var result = $("#result");
+            function updateResult() {
+                var val = {
+                    for: $("#for").val().trim(),
+                    destinations: []
+                };
+                if ($("#bitcoin").val().trim() != "") {
+                    val.destinations.push({
+                        type: "bitcoin",
+                        address: $("#bitcoin").val().trim()
+                    });
+                }
+                if ($("#paypal").val().trim() != "") {
+                    val.destinations.push({
+                        type: "paypal",
+                        address: $("#paypal").val().trim()
+                    });
+                }
+                result.text("tip='" + JSON.stringify(val) + "'");
+            }
+            $("#for, #bitcoin, #paypal").keyup(updateResult);
+
+        </script>
+    </body>
+</html>

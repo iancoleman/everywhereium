@@ -144,9 +144,10 @@ var Popup = function() {
 
     var showEscrowHelperMsg = function() {
         var div = $(document.createElement("div"));
+        var tabUrl = "THE URL OF THE SITE YOU TIPPED"; // TODO set this correctly
         div.addClass("escrowHelper");
         div.append($("<div>This tip will be held at everywhereium until the owner of the site claims it.</div>"));
-        var url = "#?" + (new Date().getTime());
+        var url = "https://everywhereium.com/sample_email?site=" + tabUrl;
         div.append("<a href='" + url + "' target='_blank'>Please tell them about their tip!</a>");
         $("body").append(div);
     }

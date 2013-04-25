@@ -11,11 +11,13 @@ import (
 )
 
 var Map map[string]string
+var mux *http.ServeMux
 
-func Start() {
+func Start(serveMux *http.ServeMux) {
+    mux = serveMux
     env := os.Getenv("ENV")
     if env == "development" {
-        http.Handle("/", http.FileServer(http.Dir("static")))
+        mux.Handle("/", http.FileServer(http.Dir("static")))
     } else {
         loadCache()
     }
@@ -43,11 +45,11 @@ func cacheStaticFile(filename string, f os.FileInfo, err error) error {
     content, err := ioutil.ReadFile(filename)
     if key == "index" {
         Map[""] = string(content)
-        http.HandleFunc("/", fromCache)
+        mux.HandleFunc("/", fromCache)
         return err
     }
     Map[key] = string(content)
-    http.HandleFunc(key, fromCache)
+    mux.HandleFunc(key, fromCache)
     return err
 }
 

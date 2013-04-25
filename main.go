@@ -16,7 +16,7 @@ func main() {
     serverMux := http.NewServeMux()
     serverMux.HandleFunc("/", redirectToTLS)
     server := &http.Server{
-        Addr: ":8080",
+        Addr: os.Getenv("EVERYWHEREIUM_HTTP_PORT"),
         Handler: serverMux,
         ReadTimeout: 10 * time.Second,
         WriteTimeout: 10 * time.Second,
@@ -29,7 +29,7 @@ func main() {
     serverTLSMux.HandleFunc("/api/rescan", api.Rescan)
     serverTLSMux.HandleFunc("/api/search", api.Search)
     serverTLS := &http.Server{
-        Addr: ":8443",
+        Addr: os.Getenv("EVERYWHEREIUM_TLS_PORT"),
         Handler: serverTLSMux,
         ReadTimeout: 10 * time.Second,
         WriteTimeout: 10 * time.Second,

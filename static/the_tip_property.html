@@ -5,7 +5,13 @@
         <title>Everywhereium</title>
     </head>
     <body tip='{"for":"Ian","destinations":[{"type":"bitcoin","address":"167ymicw1TgLfpm5Nu8kpHn1z4mz1d5DFB"}]}'>
-        <div>The tip property is json, with the format</div>
+        <div>Everywhereium is a way to receive tips for the pages you publish on the internet, sent directly from viewers to you.</div>
+        <div>The way it works is via a property on each webpage called 'tip'. The tip property contains information about where to send tips if readers like your page.</div>
+        <div>This page describes how to correctly set the tip property on your page so you can receive tips.</div>
+        <div>Once you've set this property on your page, you'll be able to receive tips directly from users without having any interaction with everywhereium.</div>
+        <div>The tip property looks like this in your html code:</div>
+        <code>&lt;div tip='your tip information'&gt;Your content&lt;/div&gt;</code>
+        <div>The tip property contains json, with the format</div>
         <pre>
 {
     "for": "Your name",
@@ -22,10 +28,10 @@
 }
 </pre>
         <div>
+            Some guidelines for creating a correct tip property value:</div>
             <ul>
-                <li>There must be at least one destination</li>
-                <li>Currently the destination types supported by the everywhereium extension include bitcoin and paypal. Other destination types will probably be added in the future.</li>
-                <li>the <code>for</code> property is used to differentiate between people to be tipped in case there are multiple tips on the page.</li>
+                <li>There must be at least one destination, but you can include only paypal, or only bitcoin if you like.</li>
+                <li>the <code>for</code> property required, as it is used to differentiate between people to be tipped in case there are multiple tips on the page.</li>
             </ul>
         </div>
         <div>Enter your details below to generate a tip property value that can be copied and pasted</div>

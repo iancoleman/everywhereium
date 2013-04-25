@@ -3,45 +3,51 @@
     <head>
         <meta charset="utf-8">
         <title>Everywhereium</title>
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
     </head>
-    <body>
-        <div class="container">
+    <body tip='{"for":"Ian","destinations":[{"type":"bitcoin","address":"167ymicw1TgLfpm5Nu8kpHn1z4mz1d5DFB"}]}'>
+        <h1>A way to tip content creators on the web</h1>
+        <div>Add a 'tip' property to a div tag or the body tag on your page.</div>
+        <div>
+            <code>
+                &lt;div tip="<a href="/the_tip_property">your details here</a>"&gt;Your content&lt;/div&gt;
+            </code>
+        </div>
+        <div>
+            This lets everyone on the internet know how they can send you tips.
+        </div>
+        <div>
+            <h1>Giving Tips</h1>
+            <ul>
+                <li>Install the extension (currently chrome only, others are in the works)</li>
+                <li>If you like something on a page, press the extension button.</li>
+                <li>The extension looks for tip data, and presents a simple dialog.</li>
+                <li>Use the dialog to send a tip directly to the person that created the content you like.</li>
+            </ul>
+        </div>
+        <div id="faq">
+            <h1>FAQ</div>
+            <ul>
+                <li>Why does this page look so horrid?</li>
+                <div>Everywhereium is looking for a person to do some styling. If you can create some graphics and do some
+                    css, please visit the project at
+                    <a href="https://www.github.com/thedawnrider/everywhereium">github.com</a>.
+                    Of course, tip data for contributors will be included on any page they contribute to.</div>
 
-            <div class="navbar">
-                <div class="navbar-inner">
-                    <span class="brand">Everywhereium</span>
-                    <form action="search" method="GET" class="navbar-form pull-right form-inline">
-                        <label for="q" class="checkbox">Does your site have unclaimed tips?</label>
-                        <div class="input-append">
-                            <input type="text" name="q" id="q" placeholder="eg bacon.com">
-                            <input type="submit" value="Search" class="btn">
-                        </div>
-                    </form>
+                <li>When will extensions be available for browsers other than chrome?</li>
+                <div>When they get written! If you know code, please consider contributing to the project at
+                    <a href="https://www.github.com/thedawnrider/everywhereium">github.com</a>
+                    There's also opportunity to create javascript libraries and wordpress plugins etc that can also
+                    tap into the tip property.
                 </div>
-            </div>
 
-            <div class="row">
-                <h1 class="text-center">Give a tip to any website on the internet</h1>
-            </div>
-            <div class="row">
-                <h1 class="text-center">How It Works</h1>
-                <div>You decide something on a site is awesome enough to deserve a tip.</div>
-                <div>Click the everywhereium <a href="#start">extension</a> button in your browser.</div>
-                <div>Decide how much you want to tip.</div>
-                <div>Press the tip button and the tip goes directly to the person.</div>
-            </div>
-            <div class="row" id="start">
-                <h1 class="text-center">Start Tipping</h1>
-            </div>
-            <div class="row">
-                <h1 class="text-center">Top Unclaimed Tips</h1>
-            </div>
-            <div class="row" id="faq">
-                <h1 class="text-center">FAQ</div>
-            </div>
-            <div tip='{"id":"Clarence","address":"1Clary"}'></div>
+                <li>What if I want to tip a page that has no tip data on it?</li>
+                <div>Everywhereium offers an escrow service so you can still send a tip to that page,
+                    and the owner of the page can claim it back when they've added the required tip
+                    information to their page.</div>
+
+                <li>How can I contact everywhereium?</li>
+                <div>The best means of contacting everywhereium is by email. ian@everywhereium.com</div>
+            </ul>
         </div>
     </body>
 </html>

@@ -1,18 +1,14 @@
 package main
 
 import (
-    "api"
     "cache"
     "fmt"
     "net/http"
     "os"
-    "scraper"
     "time"
 )
 
 func main() {
-
-    scraper.Init()
 
     serverMux := http.NewServeMux()
     serverMux.HandleFunc("/", redirectToTLS)
@@ -26,9 +22,6 @@ func main() {
 
     serverTLSMux := http.NewServeMux()
     cache.Start(serverTLSMux)
-    serverTLSMux.HandleFunc("/api/getAddress", api.GetAddress)
-    serverTLSMux.HandleFunc("/api/rescan", api.Rescan)
-    serverTLSMux.HandleFunc("/api/search", api.Search)
     serverTLS := &http.Server{
         Addr: os.Getenv("EVERYWHEREIUM_TLS_PORT"),
         Handler: serverTLSMux,

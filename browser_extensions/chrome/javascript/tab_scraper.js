@@ -24,7 +24,7 @@ function Scraper() {
     }
 
     var getRemoteTip = function() {
-        _this.tips.push({
+        /*_this.tips.push({
             for: "This website",
             destinations: [
                 {
@@ -34,6 +34,17 @@ function Scraper() {
             ]
         });
         getRemoteAddress();
+        */
+        _this.tips.push({
+            for: "This website",
+            destinations: [
+                {
+                    "type": "error",
+                    "id": "everywhereium"
+                    // No remote escrow service yet.
+                }
+            ]
+        });
     }
 
     var getRemoteAddress = function() {

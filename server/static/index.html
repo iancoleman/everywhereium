@@ -2,32 +2,42 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <title>Everywhereium</title>
     </head>
     <body tip='{"for":"Ian","destinations":[{"type":"bitcoin","address":"167ymicw1TgLfpm5Nu8kpHn1z4mz1d5DFB"},{"type":"paypal","address":"ian@everywhereium.com"}]}'>
-        <h1>A way to tip content creators on the web</h1>
-        <img src="https://dl.dropboxusercontent.com/u/29171344/everywhereium_screenshot.png" />
-        <div>Add a 'tip' property to a div tag or the body tag on your page.</div>
-        <div>
-            <code>
-                &lt;div tip="<a href="/the_tip_property">your details here</a>"&gt;Your content&lt;/div&gt;
-            </code>
+        <div class="container">
+            <div class="text-center">
+                <h1>A way to tip content creators on the web</h1>
+                <img src="https://dl.dropboxusercontent.com/u/29171344/everywhereium_screenshot.png" />
+            </div>
         </div>
-        <div>
-            This lets everyone on the internet know how they can send you tips.
+        <div class="container">
+            <h2>Usage</h2>
+            <div>Add a 'tip' property to a div tag or the body tag on your page.</div>
+            <div>
+                <code>
+                    &lt;div tip="<a href="/the_tip_property">your details here</a>"&gt;Your content&lt;/div&gt;
+                </code>
+            </div>
+            <div>
+                This lets everyone on the internet know how they can send you tips.
+            </div>
+            <div>See what the <a href="/the_tip_property">tip property</a> should include and <a href="/the_tip_property">generate</a> a tip tag for your elements.</div>
         </div>
-        <div>See what the <a href="/the_tip_property">tip property</a> should include and <a href="/the_tip_property">generate</a> a tip tag for your elements.</div>
-        <h2>Key Features</h2>
-        <div>
-            <ul>
-                <li>Use any payment method - currently <a href="https://chrome.google.com/webstore/detail/everywhereium/mflpjfialafgelfklkbobnmjjkigfeij">the everywhereium extension</a> supports bitcoin and paypal.</li>
-                <li>Supports multiple tips per page - each indivdual content contributor can be tipped; works well on forums and crowd-sourced content.</li>
-                <li>Easily expanded - json format has been designed for flexibility so other payment methods can easily be included, even before they're supported in the browser extensions.</li>
-                <li><a href="https://github.com/thedawnrider/everywhereium">Open source</a> - secure and community-driven</li>
-            </ul>
+        <div class="container">
+            <h2>Key Features</h2>
+            <div>
+                <ul class="thumbnails">
+                    <li class="span3">Use any payment method - currently <a href="https://chrome.google.com/webstore/detail/everywhereium/mflpjfialafgelfklkbobnmjjkigfeij">the everywhereium extension</a> supports bitcoin and paypal.</li>
+                    <li class="span3">Supports multiple tips per page - each indivdual content contributor can be tipped; works well on forums and crowd-sourced content.</li>
+                    <li class="span3">Easily expanded - json format has been designed for flexibility so other payment methods can easily be included, even before they're supported in the browser extensions.</li>
+                    <li class="span3"><a href="https://github.com/thedawnrider/everywhereium">Open source</a> - secure and community-driven</li>
+                </ul>
+            </div>
         </div>
-        <div>
-            <h1>Giving Tips</h1>
+        <div class="container">
+            <h2>Giving Tips</h2>
             <ul>
                 <li><a href="https://chrome.google.com/webstore/detail/everywhereium/mflpjfialafgelfklkbobnmjjkigfeij">Install the extension</a> (currently chrome only, others are in the works)</li>
                 <li>If you like something on a page, press the extension button.</li>
@@ -35,8 +45,8 @@
                 <li>Use the dialog to send a tip directly to the person that created the content you like.</li>
             </ul>
         </div>
-        <div id="faq">
-            <h1>FAQ</div>
+        <div class="container">
+            <h2>FAQ</h2>
             <ul>
                 <li>Why does this page look so horrid?</li>
                 <div>Everywhereium is looking for a person to do some styling. If you can create some graphics and do some

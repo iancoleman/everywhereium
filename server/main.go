@@ -1,7 +1,6 @@
 package main
 
 import (
-    "cache"
     "fmt"
     "net/http"
     "os"
@@ -21,7 +20,7 @@ func main() {
     }
 
     serverTLSMux := http.NewServeMux()
-    cache.Start(serverTLSMux)
+    serverTLSMux.Handle("/", http.FileServer(http.Dir("static")))
     serverTLS := &http.Server{
         Addr: os.Getenv("EVERYWHEREIUM_TLS_PORT"),
         Handler: serverTLSMux,
